@@ -14,10 +14,11 @@
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             background: linear-gradient(135deg, #f5d9ff, #c9b6e4, #e1ccec);
-            color: #ff6b88;;
+            color: #ff6b88;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            -webkit-text-size-adjust: 100%; /* 防止iOS字体缩放 */
         }
         
         .falling-star {
@@ -63,14 +64,14 @@
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #6b2c90;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #8e44ad;
             margin-bottom: 20px;
         }
@@ -79,13 +80,14 @@
             display: flex;
             justify-content: center;
             margin: 30px 0;
+            flex-wrap: wrap;
         }
         
         .nav-btn {
             background: rgba(255, 255, 255, 0.3);
             border: none;
-            padding: 12px 25px;
-            margin: 0 10px;
+            padding: 12px 20px;
+            margin: 5px;
             border-radius: 30px;
             font-size: 1rem;
             color: #6b2c90;
@@ -102,7 +104,7 @@
         .content-section {
             background: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: none;
@@ -124,7 +126,7 @@
         }
         
         .love-letter {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 20px 0;
             padding: 20px;
             background: rgba(245, 217, 255, 0.5);
@@ -135,18 +137,22 @@
         /* 相册样式 - 已更新 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
         
         .photo {
-            height: 200px;
+            height: 180px;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s ease;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0e6f5;
         }
         
         .photo img {
@@ -250,7 +256,7 @@
         
         .modal-content {
             max-width: 90%;
-            max-height: 90%;
+            max-height: 80%;
         }
         
         .modal-content img {
@@ -268,10 +274,61 @@
             cursor: pointer;
         }
         
+        /* 添加iPhone特定样式 */
+        @supports (-webkit-touch-callout: none) {
+            .container {
+                padding: 15px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .photo {
+                height: 160px;
+            }
+        }
+        
+        /* 响应式设计优化 */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
-            .subtitle { font-size: 1.2rem; }
+            .subtitle { font-size: 1.1rem; }
             .gallery { grid-template-columns: repeat(2, 1fr); }
+            .photo { height: 160px; }
+            
+            /* 针对小屏幕设备的额外调整 */
+            .love-letter {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery { grid-template-columns: 1fr; }
+            .photo { height: 200px; }
+            
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            
+            header {
+                padding: 20px 0;
+            }
+        }
+        
+        /* 针对iPhone 15 Pro Max等大屏设备 */
+        @media (min-width: 430px) and (max-width: 932px) and (-webkit-min-device-pixel-ratio: 3) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .photo {
+                height: 190px;
+            }
         }
     </style>
 </head>
@@ -293,53 +350,54 @@
         <main>
             <section id="declaration" class="content-section active">
                 <div class="declaration">
-                    <h2>最有意义的“相见”，是背后一个个代码编译出的呈现</h2>
+                    <h2>最有意义的"相见"，是背后一个个代码编译出的呈现</h2>
                     <div class="love-letter">
                         <p>萤溯星海，心栖初岸</p>
                         <p>在这次不一样的七夕节，我想告诉你，你是我生命中最美好的相遇</p>
                         <p>和你在一起的那些天，原来都是我珍贵的礼物</p>
-                        <p> 愿，不忘曾经</p>
+                        <p>愿，不忘曾经</p>
                     </div>
                 </div>
             </section>
             
             <section id="memories" class="content-section">
                 <h2>我们的美好回忆（我们的那些第一次）</h2>
-                <p style="text-align: center; margin-bottom: 20px;">点击照片可以放大查看（注：当前技术不足，无法适配尺寸）</p>
+                <p style="text-align: center; margin-bottom: 20px;">点击照片可以放大查看（注：目前技术不足，无法适配尺寸）</p>
                 <div class="gallery">
                     <!-- 示例照片1 -->
                     <div class="photo">
-                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250827231743.jpg" alt="第一次游玩">
+                        <img src="img/微信图片_20250827231743.jpg" alt="第一次游玩">
                         <div class="photo-title">第一次游玩</div>
                     </div>
                     
                     <!-- 示例照片2 -->
                     <div class="photo">
-                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828191928.jpg" alt="第一次游戏">
+                        <img src="img/微信图片_20250828191928.jpg" alt="第一次游戏">
                         <div class="photo-title">第一次游戏</div>
                     </div>
                     
                     <!-- 示例照片3 -->
                     <div class="photo">
-                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828191940.jpg" alt="第一次公司记录">
+                        <img src="img/微信图片_20250828191940.jpg" alt="第一次公司记录">
                         <div class="photo-title">第一次公司记录</div>
                     </div>
                     
                     <!-- 示例照片4 -->
                     <div class="photo">
-                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828192053.jpg" alt="第一次做饭">
+                        <img src="img/微信图片_20250828192053.jpg" alt="第一次做饭">
                         <div class="photo-title">第一次做饭</div>
                     </div>
                 </div>
             </section>
-            
+           
             <section id="wishes" class="content-section">
                 <div class="wishes">
                     <h2>七夕祝福</h2>
                     <p>我在这里许下愿望，让愿望飘向远方</p>
                     <div class="wish-form">
                         <textarea placeholder="pikachu：我的愿望是，你永远记得。 这是你的专属网站，我将不断完善~"></textarea>
-                      
+                        <!-- 添加提交按钮 -->
+
                     </div>
                 </div>
             </section>
@@ -357,12 +415,12 @@
     <div class="music-player" id="music-toggle">
         <div class="music-icon">🎵</div>
     </div>
-    
+
     <audio id="bg-music" loop>
         <!-- 替换为你的音乐文件 -->
-        <source src="D:\陈萍萍2\2025.8.27七夕html\音乐\小蓝背心 - 做自己的月亮.mp3" type="audio/mpeg">
+        <source src="music/小蓝背心 - 做自己的月亮.mp3" type="audio/mpeg">
     </audio>
-    
+
     <script>
         // 创建飘落的星星和爱心
         function createFallingElements() {
@@ -423,6 +481,13 @@
             const bgMusic = document.getElementById('bg-music');
             let isPlaying = false;
             
+            // 尝试播放音乐（需要用户交互）
+            try {
+                bgMusic.volume = 0.5;
+            } catch (e) {
+                console.log("音乐设置失败:", e);
+            }
+            
             musicToggle.addEventListener('click', () => {
                 if (isPlaying) {
                     bgMusic.pause();
@@ -443,14 +508,16 @@
             const textarea = wishForm.querySelector('textarea');
             const button = wishForm.querySelector('.submit-btn');
             
-            button.addEventListener('click', () => {
-                if (textarea.value.trim() !== '') {
-                    alert('记得告诉我，星黛露💖');
-                    textarea.value = '';
-                } else {
-                    alert('七夕，走个形式');
-                }
-            });
+            if (button) {
+                button.addEventListener('click', () => {
+                    if (textarea.value.trim() !== '') {
+                        alert('记得告诉我，星黛露💖');
+                        textarea.value = '';
+                    } else {
+                        alert('七夕，走个形式');
+                    }
+                });
+            }
         }
         
         // 设置照片模态框功能
@@ -458,25 +525,23 @@
             const modal = document.getElementById('photo-modal');
             const modalImage = document.getElementById('modal-image');
             const closeModal = document.getElementById('close-modal');
-            const photos = document.querySelectorAll('.photo img');
             
-            // 点击照片打开模态框
-            photos.forEach(photo => {
-                photo.addEventListener('click', () => {
-                    modal.style.display = 'flex';
-                    modalImage.src = photo.src;
-                    modalImage.alt = photo.alt;
-                });
-            });
-            
-            // 点击关闭按钮关闭模态框
-            closeModal.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            
-            // 点击模态框背景关闭模态框
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+            // 修复：使用事件委托来处理照片点击
+            document.addEventListener('click', function(e) {
+                // 检查点击的是否是照片
+                if (e.target.closest('.photo')) {
+                    const photo = e.target.closest('.photo');
+                    const imgElement = photo.querySelector('img');
+                    
+                    if (imgElement && imgElement.src) {
+                        modal.style.display = 'flex';
+                        modalImage.src = imgElement.src;
+                        modalImage.alt = imgElement.alt || "照片";
+                    }
+                }
+                
+                // 检查点击的是否是关闭按钮
+                if (e.target === closeModal || e.target === modal) {
                     modal.style.display = 'none';
                 }
             });
@@ -489,6 +554,11 @@
             setupMusic();
             setupWishForm();
             setupPhotoModal();
+            
+            // 添加iOS特定优化
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                document.body.classList.add('ios-device');
+            }
         });
     </script>
 </body>
