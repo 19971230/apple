@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七夕快乐，星黛露</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5d9ff, #c9b6e4, #e1ccec);
+            color: #ff6b88;;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .falling-star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff3366;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #6b2c90;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-size: 1rem;
+            color: #6b2c90;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(107, 44, 144, 0.8);
+            color: white;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .declaration {
+            text-align: center;
+            line-height: 1.8;
+        }
+        
+        .love-letter {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(245, 217, 255, 0.5);
+            border-radius: 15px;
+            text-align: left;
+        }
+        
+        /* 相册样式 - 已更新 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .photo {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(107, 44, 144, 0.7);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo:hover .photo-title {
+            opacity: 1;
+        }
+        
+        .wishes {
+            text-align: center;
+        }
+        
+        .wish-form {
+            margin-top: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #e1ccec;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        
+        .submit-btn {
+            background: #6b2c90;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #8e44ad;
+        }
+        
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .music-icon {
+            font-size: 24px;
+            color: #6b2c90;
+        }
+        
+        /* 照片模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div id="falling-elements"></div>
+    
+    <div class="container">
+        <header>
+            <h1>七夕快乐，我一直在啊</h1>
+            <p class="subtitle">就让曾经的爱情如眼前般璀璨永恒</p>
+        </header>
+        
+        <nav>
+            <button class="nav-btn active" data-target="declaration">七夕对话</button>
+            <button class="nav-btn" data-target="memories">我们的回忆</button>
+            <button class="nav-btn" data-target="wishes">专属祝福</button>
+        </nav>
+        
+        <main>
+            <section id="declaration" class="content-section active">
+                <div class="declaration">
+                    <h2>最有意义的“相见”，是背后一个个代码编译出的呈现</h2>
+                    <div class="love-letter">
+                        <p>萤溯星海，心栖初岸</p>
+                        <p>在这次不一样的七夕节，我想告诉你，你是我生命中最美好的相遇</p>
+                        <p>和你在一起的那些天，原来都是我珍贵的礼物</p>
+                        <p> 愿，不忘曾经</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="memories" class="content-section">
+                <h2>我们的美好回忆（我们的那些第一次）</h2>
+                <p style="text-align: center; margin-bottom: 20px;">点击照片可以放大查看（注：当前技术不足，无法适配尺寸）</p>
+                <div class="gallery">
+                    <!-- 示例照片1 -->
+                    <div class="photo">
+                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250827231743.jpg" alt="第一次游玩">
+                        <div class="photo-title">第一次游玩</div>
+                    </div>
+                    
+                    <!-- 示例照片2 -->
+                    <div class="photo">
+                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828191928.jpg" alt="第一次游戏">
+                        <div class="photo-title">第一次游戏</div>
+                    </div>
+                    
+                    <!-- 示例照片3 -->
+                    <div class="photo">
+                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828191940.jpg" alt="第一次公司记录">
+                        <div class="photo-title">第一次公司记录</div>
+                    </div>
+                    
+                    <!-- 示例照片4 -->
+                    <div class="photo">
+                        <img src="D:\陈萍萍2\2025.8.27七夕html\照片\微信图片_20250828192053.jpg" alt="第一次做饭">
+                        <div class="photo-title">第一次做饭</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="wishes" class="content-section">
+                <div class="wishes">
+                    <h2>七夕祝福</h2>
+                    <p>我在这里许下愿望，让愿望飘向远方</p>
+                    <div class="wish-form">
+                        <textarea placeholder="pikachu：我的愿望是，你永远记得。 这是你的专属网站，我将不断完善~"></textarea>
+                      
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- 照片模态框 -->
+    <div class="modal" id="photo-modal">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="">
+        </div>
+    </div>
+    
+    <div class="music-player" id="music-toggle">
+        <div class="music-icon">🎵</div>
+    </div>
+    
+    <audio id="bg-music" loop>
+        <!-- 替换为你的音乐文件 -->
+        <source src="D:\陈萍萍2\2025.8.27七夕html\音乐\小蓝背心 - 做自己的月亮.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // 创建飘落的星星和爱心
+        function createFallingElements() {
+            const container = document.getElementById('falling-elements');
+            const types = ['star', 'heart'];
+            const colors = ['#ff3366', '#ff99cc', '#cc99ff', '#ffffff'];
+            
+            for (let i = 0; i < 30; i++) {
+                const type = types[Math.floor(Math.random() * types.length)];
+                const element = document.createElement('div');
+                
+                if (type === 'star') {
+                    element.className = 'falling-star';
+                    element.style.width = Math.random() * 5 + 3 + 'px';
+                    element.style.height = element.style.width;
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.animationDuration = Math.random() * 5 + 3 + 's';
+                    element.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                } else {
+                    element.className = 'heart';
+                    element.innerHTML = '❤';
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.animationDuration = Math.random() * 4 + 4 + 's';
+                    element.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    element.style.fontSize = Math.random() * 15 + 15 + 'px';
+                }
+                
+                element.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(element);
+            }
+        }
+        
+        // 设置导航功能
+        function setupNavigation() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.getAttribute('data-target');
+                    
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // 设置音乐控制功能
+        function setupMusic() {
+            const musicToggle = document.getElementById('music-toggle');
+            const bgMusic = document.getElementById('bg-music');
+            let isPlaying = false;
+            
+            musicToggle.addEventListener('click', () => {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    musicToggle.style.opacity = '0.7';
+                } else {
+                    bgMusic.play().catch(e => {
+                        console.log('自动播放受阻，需要用户交互');
+                    });
+                    musicToggle.style.opacity = '1';
+                }
+                isPlaying = !isPlaying;
+            });
+        }
+        
+        // 设置祝福表单功能
+        function setupWishForm() {
+            const wishForm = document.querySelector('.wish-form');
+            const textarea = wishForm.querySelector('textarea');
+            const button = wishForm.querySelector('.submit-btn');
+            
+            button.addEventListener('click', () => {
+                if (textarea.value.trim() !== '') {
+                    alert('记得告诉我，星黛露💖');
+                    textarea.value = '';
+                } else {
+                    alert('七夕，走个形式');
+                }
+            });
+        }
+        
+        // 设置照片模态框功能
+        function setupPhotoModal() {
+            const modal = document.getElementById('photo-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeModal = document.getElementById('close-modal');
+            const photos = document.querySelectorAll('.photo img');
+            
+            // 点击照片打开模态框
+            photos.forEach(photo => {
+                photo.addEventListener('click', () => {
+                    modal.style.display = 'flex';
+                    modalImage.src = photo.src;
+                    modalImage.alt = photo.alt;
+                });
+            });
+            
+            // 点击关闭按钮关闭模态框
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            // 点击模态框背景关闭模态框
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createFallingElements();
+            setupNavigation();
+            setupMusic();
+            setupWishForm();
+            setupPhotoModal();
+        });
+    </script>
+</body>
+</html>
