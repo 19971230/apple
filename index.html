@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋快乐星黛露</title>
+    <link rel="stylesheet" href="./zhongqiu.css">
+    <style>
+        html,
+        body {
+            /* width: 1290px; */
+            /* background: url(img/_MG_4850_\(4\).jpg); */
+            /* background-color: #000000; */
+            /* no-repeat center center fixed;  */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            /* overflow-x: hidden; */
+        }
+
+
+
+        .bj {
+            position: relative;
+            width: 100%;
+            height: 20vh;
+            /* max-height: 20vh;  */
+            /* background: linear-gradient(45deg,#ffd82d,#fa341a); */
+            /* display: flex;
+            justify-content: space-between;
+            align-items: center; */
+            box-shadow: 0px 1px 35px #ff6b88;
+            margin-bottom: 2vh;
+            /* overflow: hidden; */
+            /* width: 1290px;  */
+            /* background: url(video/WeChat_20250911224815.mp4); */
+            /* border-style: ridge; border-radius: 0.5vh; border-width: 0.8vh;  */
+            /* border-color:  #ff6b88; */
+            box-sizing: border-box;
+            /* 关键！让边框不挤压内容 */
+
+        }
+
+        .bj .videox {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .bj video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* object-position: center 30%; */
+        }
+
+        @media (min-width: 900px) {
+            .bj {
+                height: 550px;
+    
+            }
+        }
+
+
+        /* 美食 游玩 心情 */
+        .nav {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 6vh;
+
+        }
+
+        .meishi {
+            border-radius: 5px;
+            width: 30%;
+            height: 100%;
+            /* 让button水平垂直居中 */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: 0px 5px 10px #ff7d97;
+            margin-bottom: 2vh;
+            transition: 0.8s ease-in-out;
+            
+        }
+
+        /* 美食 游玩 心情按钮 */
+        button {
+            border: none;
+        }
+
+
+        .wenzi {
+            color: #fffdfd;
+            font-size: 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background: none;
+            text-shadow: #ff2e58 2px 2px 7px;
+            /* font-size: 3vh; margin-bottom: 0.4vh; */
+
+        }
+
+
+        /* .meishi:hover {
+            transform: translateY(-3px);
+            transition: all 0.8s ease;
+        } */
+
+
+        /* 视频展示 */
+        .ship {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: #ff6b88 0px 3px 35px;
+        }
+
+        .ship video {
+            width: 100%;
+
+        }
+
+
+        .yanhua {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            display: none;
+        }
+
+        .yanhua video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- 所有 弹窗编写 -->
+
+
+    <div id="fengm" class="fengm">
+        <video id="fengmvideo" src="video/fengm.mp4"></video>
+    </div>
+
+    <!-- 横幅弹窗 -->
+    <div id="bjtancx" class="bjtancx">
+        <div id="bjtanc" class="bjtanc">
+            <div class="bjtanc1">拍摄时间 : 2025.1.15</div>
+            <div class="bjtanc2">地点 : 联发悦十里空间</div>
+            <div id="bjtanc3" class="bjtanc3">确定</div>
+        </div>
+    </div>
+
+
+    <!--美食 弹窗 -->
+    <div class="tanc" id="tanc">
+        <div class="tancx">
+            <div class="tanc1">中秋吃什么？</div>
+            <div class="tanc2">
+                <div class="tanc2_1">蛋挞</div>
+                <div class="tanc2_1">板栗</div>
+                <div class="tanc2_1">溜溜梅</div>
+                <div class="tanc2_1">无骨鸡爪</div>
+                <div class="tanc2_1">基围虾</div>
+                <div class="tanc2_1">牛蛙</div>
+                <div class="tanc2_1">草莓干</div>
+                <div class="tanc2_1">哈密瓜</div>
+                <div class="tanc2_1">芒果</div>
+                <div class="tanc2_1">AD钙</div>
+            </div>
+            <div class="tancx2">
+                <div id="tanc3" class="tanc3">确定</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- end弹窗 -->
+    <div id="endtc" class="endtc">
+        <div id="endtc1" class="endtc1">
+            <div class="endtc2">萤溯星海，心栖初岸</div>
+            <div class="endtcx">
+                <div id="endtc3" class="endtc3">返回</div>
+                <div id="endtc4" class="endtc4">烟花</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- 心情弹窗 -->
+    <div id="xqct" class="xqct">
+        <div id="xqtcx1" class="xqtcx1">
+            <div class="xqtc1">
+                <!-- <div class="xqtc1_1">她谈了两场恋爱，她告诉我说第一场分手是因为行为上的拒绝。第二场恋爱是因为对我的失望。<br>我避免了第一场问题的发生，但我依然</div> -->
+                <div class="xqtc1_1">空白待续，像某些未完成的故事...</div>
+
+            </div>
+            <div id="xqtc2" class="xqtc2">确定</div>
+        </div>
+    </div>
+
+
+    <!-- 所有 骨架编写 -->
+
+    <!-- 最顶端横幅 -->
+    <div id="bj" class="bj">
+        <div id="videox" class="videox">
+            <video id="video1" autoplay muted></video>
+            <!-- <video id="video1" src="video/WeChat_20250911224815.mp4" autoplay muted></video> -->
+            <video id="video1" src="https://zhongqiu-1381679397.cos.ap-guangzhou.myqcloud.com/1.0.mp4?q-sign-algorithm=sha1&q-ak=AKIDD9BcJevBe7rEN-YRhNZe_xf_DMGvpqL62kfjIjb3NZvQp5lYEZi2ScN3XIgDmETv&q-sign-time=1759693744;1759697344&q-key-time=1759693744;1759697344&q-header-list=host&q-url-param-list=&q-signature=2e42c75464b92519bb06c237f5aa8a7b49ac7ab0&x-cos-security-token=Fsv3rE83qdSxqiPL1SRvWhvb1i1wL67a4d7b4281a4e31169268bd25b050924779HbeCmdKs_xXUJ_7d0XrzaOxpfSxPR8Errj8UFFBRMBb03pgf5xKl53REmAgsskKbVj-8G5-YUAY_1XHR0AR9GJrClI-IBFIlOOR466NzhKi0cS1xwI7taghl0A7UtnIWmBExuY3c6DOHd9rEJc6klmdouA9D08WNG7DSPVEReDanrbV4VC6Pq75F6pJrLx2JVc17proRxvBzwbrha7fMoAWwM108UgCN7IurSdXqXZb_G_ZeYRjReV1S0yYcVIfxKvuRB6Og6ubJb8HwrhbUg" autoplay muted></video>
+        </div>
+    </div>
+
+
+    <!-- 美食 游玩 心情 -->
+    <div class="nav">
+        <button id="meishi" class="meishi" style="background: linear-gradient(45deg,#ffca6856,#ff5376c4, #ff6b88)">
+            <div class="wenzi">美食</div>
+        </button>
+        <button id="youwan" class="meishi" style="background: linear-gradient(45deg,#ffca6856,#ff5376c4, #ff6b88)">
+            <div class="wenzi">游玩</div>
+        </button>
+        <button id="xinqing" class="meishi" style="background: linear-gradient(45deg,#ffca6856,#ff5376c4, #ff6b88);">
+            <div class="wenzi">故事</div>
+        </button>
+    </div>
+
+    <!-- 视频展示 -->
+    <div class="ship">
+        <video src="https://zhongqiu-1381679397.cos.ap-guangzhou.myqcloud.com/zqvideo.mp4?q-sign-algorithm=sha1&q-ak=AKIDg841lthZ1-Yv7ClI2R4Ebe3Bg3BoJHLqjgoWY1bgiMtP-xENphsO4cbk2TDbpOJ0&q-sign-time=1759694091;1759697691&q-key-time=1759694091;1759697691&q-header-list=host&q-url-param-list=&q-signature=7805a2dd55f806fa34980ff5e7ca31406822b6b4&x-cos-security-token=Fsv3rE83qdSxqiPL1SRvWhvb1i1wL67a66150820a60d7f5b2fbbf9eac14666c89HbeCmdKs_xXUJ_7d0Xrzeojeyrd7IaWiRXwDSjy0RBCLekhc4H0TkEXeBqMxsubH41gXHSFe_6IzQkR3y2ewW1tPFENrWQJAZMm388qzkx8FZBudA42DmW-b9mMDrAaNnxqbrZyL79qv9qXsz08AmzzdI1Ssgugwnldaiy8Pohz7iluoyXBaaxE7H_NJs5xINLjia97DkbDJov49Qd0GkcxiWSvr4WDK3yHGnV5mOwkhIIndjocTvB085segfG2ub6vQv8NAjSMdSCJmt-d-A" autoplay muted></video>
+    </div>
+
+
+    <!-- 七天表格 -->
+    <div class="xuanzhe">
+        <div id="mg1" class="mg1">
+            <img src="img/_MG_4850_(4).jpg" alt="">
+        </div>
+        <div class="xuanzhex">
+            现在是国庆
+        </div>
+        <div class="xuanzhex1">
+            <div id="xuanzhe1" class="xuanzhe1">
+                <input id="xuanzhe1_input" type="radio" name="zuijin">第一天
+            </div>
+            <div id="xuanzhe2" class="xuanzhe1">
+                <input id="xuanzhe2_input" type="radio" name="zuijin">第二天
+            </div>
+            <div id="xuanzhe3" class="xuanzhe1">
+                <input id="xuanzhe3_input" type="radio" name="zuijin">第三天
+            </div>
+            <div class="xuanzhe1">
+                <input type="radio" name="zuijin" onclick="quna4()">第四天
+            </div>
+            <div class="xuanzhe1">
+                <input type="radio" name="zuijin" onclick="quna5()">第五天
+            </div>
+            <div class="xuanzhe1">
+                <input type="radio" name="zuijin" onclick="quna6()">第六天
+            </div>
+            <div class="xuanzhe1">
+                <input type="radio" name="zuijin" onclick="quna7()">第七天
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 猫和老鼠时间轴点数 -->
+
+    <div id="timex" class="timex">
+        <div class="timex1">
+            <video class="videov1" id="videov1" controls preload="none"></video>
+        </div>
+    </div>
+
+    <div class="tom">猫和老鼠：心情bottom时记得来看我哦！</div>
+     <div class="time">
+        <div class="time1" id="ep1">EP1</div>
+        <div class="time1" id="ep2">EP2</div>
+        <div class="time1" id="ep3">EP3</div>
+        <div class="time1" id="ep4">EP4</div>
+        <div class="time1" id="ep5">EP5</div>
+        <div class="time1" id="ep6">EP6</div>
+    </div>
+    <div class="time">
+        <div class="time1" id="ep7">EP7</div>
+        <div class="time1" id="ep8">EP8</div>
+        <div class="time1" id="ep9">EP9</div>
+        <div class="time1" id="ep10">EP10</div>
+        <div class="time1" id="ep11">EP11</div>
+        <div class="time1" id="ep12">EP12</div>
+    </div>
+    <div class="time">
+        <div class="time1" id="ep13">EP13</div>
+        <div class="time1" id="ep14">EP14</div>
+        <div class="time1" id="ep15">EP15</div>
+        <div class="time1" id="ep16">EP16</div>
+        <div class="time1" id="ep17">EP17</div>
+        <div class="time1" id="ep18">EP18</div>
+    </div>
+
+    <!-- 四个表达     -->
+    <!-- <div class="js" id="js">
+        <div class="js1">在一起</div>
+        <div class="js1">永远 永远</div>
+        <div class="js1">无论在何方</div>
+        <div class="js1">始终存在</div>
+    </div> -->
+
+    <div id="end" class="end">
+        <div class="endx">Pikachu:</div>
+
+        <div class="endx">用界面交互，创建联结</div>
+
+
+    </div>
+
+
+    <div id="yanhua" class="yanhua">
+        <video id="yanhuavideo" src="https://zhongqiu-1381679397.cos.ap-guangzhou.myqcloud.com/yanhua.mp4?q-sign-algorithm=sha1&q-ak=AKIDm3dJDjBpoiHFHH_4_fr--mB2UUmzmTppy5eDxbI18zpsRklnh4SGRMcscgZyuJkc&q-sign-time=1759694043;1759697643&q-key-time=1759694043;1759697643&q-header-list=host&q-url-param-list=&q-signature=fe88d6917bb64da749dc8f26a9d7f566e25acbd4&x-cos-security-token=Fsv3rE83qdSxqiPL1SRvWhvb1i1wL67aebe198bfe8558e66a3abd268fd53d54c9HbeCmdKs_xXUJ_7d0XrzYQssiZU_7DCtymmndQQuDlQDg_FRMppB1GXpQiWxjIe_ijt78uVbRNKMq1zCcH6GusnEQy1QwVq5xqHf6poMeeSFHMl6Nnxo2XyhXz4cclYe98CrwPxwHmbDSjAXZdejpyS6cimTigOsjwaE19Y4T78IiaFTWSkzPIHgW1GZlMHdelQefxdXcnXUWWcjIt-SOsTCMxmes6SjaNrUwcDceQtfb1YlnxZl4XFQTMgpZ7_AbwEz7VGfBa7-va6rOyC8w"></video>
+    </div>
+
+    <!-- 底部版权信息 -->
+    <div class="endend">技术提供:Pikachu
+        <div class="endendx">版权所属:StellaLou</div>
+        <!-- <div class="endendx">最终解释权:StellaLou</div> -->
+    </div>
+
+    <div class="banben">版本号: 2.0.0 /首发行: 2025.10.06 （中秋节）</div>
+
+
+
+    <script src="./zhongqiu.js"></script>
+
+
+
+</body>
+
+</html>
+
+</html>
